@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Ticket Booking System</title>
+    <link rel="stylesheet" href="style.css">
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</head>
+
+<body>
+    <div class="movie-container">
+        <label>Pick a movie:</label>
+        <div id="movie">
+            <button class="movie-option" value="650" id="button">
+                <span class="text">Salaar (₹650)</span>
+                <a href="https://www.youtube.com/watch?v=JlG4TOVZEHI" target="_blank">
+                <ion-icon name="image-outline" id="icon_1">
+                    
+                </ion-icon>
+            </a>
+
+            </button>
+            <button class="movie-option" value="850" id="button">
+                <span class="text">RRR (₹850)</span>
+                <a href="https://www.youtube.com/watch?v=NgBoMJy386M" target="_blank">
+                    <ion-icon name="image-outline" id="icon_1">
+                        
+                    </ion-icon>
+                </a>
+            </button>
+            <button class="movie-option" value="550" id="button">
+                <span class="text">Jumanji: Next Level (₹550)</span>
+                <a href="https://www.youtube.com/watch?v=2QKg5SZ_35I" target="_blank">
+                    <ion-icon name="image-outline" id="icon_1">
+                        
+                    </ion-icon>
+                </a>
+            </button>
+            <button class="movie-option" value="750" id="button">
+                <span class="text">Dune 2 (₹750)</span>
+                <a href="https://www.youtube.com/watch?v=U2Qp5pL3ovA" target="_blank">
+                    <ion-icon name="image-outline" id="icon_1">
+                        
+                    </ion-icon>
+                </a>
+            </button>
+        </div>
+        
+    </div>
+    <div>
+        
+    </div>
+
+    <ul class="showcase">
+        <li>
+            <div class="seat"></div>
+            <small>N/A</small>
+        </li>
+        <li>
+            <div class="seat selected"></div>
+            <small>Selected</small>
+        </li>
+        <li>
+            <div class="seat occupied"></div>
+            <small>Occupied</small>
+        </li>
+    </ul>
+
+    <div class="container">
+        <div class="movie-screen">
+            <img src='screen-thumb.png' alt='screen' />
+        </div>
+
+        <div class="row-container">
+            <div class="row">
+                <div class="seat"></div>
+                <div class="seat"></div>
+                <div class="seat"></div>
+                <div class="seat"></div>
+                <div class="seat"></div>
+                <div class="seat"></div>
+                <div class="seat"></div>
+                <div class="seat"></div>
+            </div>
+            <div class="row">
+                <div class="seat"></div>
+                <div class="seat"></div>
+                <div class="seat"></div>
+                <div class="seat occupied"></div>
+                <div class="seat occupied"></div>
+                <div class="seat"></div>
+                <div class="seat"></div>
+                <div class="seat"></div>
+            </div>
+            <div class="row">
+                <div class="seat"></div>
+                <div class="seat"></div>
+                <div class="seat"></div>
+                <div class="seat"></div>
+                <div class="seat"></div>
+                <div class="seat"></div>
+                <div class="seat occupied"></div>
+                <div class="seat occupied"></div>
+            </div>
+            <div class="row">
+                <div class="seat"></div>
+                <div class="seat"></div>
+                <div class="seat"></div>
+                <div class="seat"></div>
+                <div class="seat"></div>
+                <div class="seat"></div>
+                <div class="seat"></div>
+                <div class="seat"></div>
+            </div>
+            <div class="row">
+                <div class="seat"></div>
+                <div class="seat"></div>
+                <div class="seat"></div>
+                <div class="seat occupied"></div>
+                <div class="seat occupied"></div>
+                <div class="seat"></div>
+                <div class="seat"></div>
+                <div class="seat"></div>
+            </div>
+            <h5 class='subtitle'>GOLD - ₹650</h5>
+            <div class="row">
+                <div class="seat"></div>
+                <div class="seat"></div>
+                <div class="seat"></div>
+                <div class="seat"></div>
+                <div class="seat"></div>
+                <div class="seat"></div>
+                <div class="seat"></div>
+                <div class="seat"></div>
+            </div>
+            <div class="row">
+                <div class="seat"></div>
+                <div class="seat"></div>
+                <div class="seat"></div>
+                <div class="seat"></div>
+                <div class="seat occupied"></div>
+                <div class="seat occupied"></div>
+                <div class="seat occupied"></div>
+                <div class="seat"></div>
+            </div>
+            <h5 class='subtitle'>DIAMOND - ₹850</h5>
+
+            <div class="text-wrapper">
+                <p class="text">Selected Seats <span id='count'>0</span>
+                    <p class="text">Total Price ₹<span id="total">0</span></p>
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="text-wrapper">
+        <button id="button" onclick="Buyalert()">
+            <a href="ticket_themes.html" style="text-decoration: none; color: white;">
+            Buy Tickets
+        </a>
+        </button>
+        <button id="button" onclick="Selltic()" > 
+            <a href="waiting_list.html" style="text-decoration: none;  color: white;">
+            Sell Tickets
+        </a>
+        </button>
+    </div>
+
+    <script src='script.js'></script>
+</body>
+
+</html>
