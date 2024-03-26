@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Waiting List</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th>User ID</th>
+                <th>Date</th>
+                <th>Movie Name</th>
+                <th>Sell Ticket</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>PVR_01</td>
+                <td>March 28, 2024</td>
+                <td>Salaar</td>
+                <td><button onclick="Sellfuc()">Sell Ticket</button></td>
+            </tr>
+            <tr>
+                <td>PVR_02</td>
+                <td>March 28, 2024</td>
+                <td>RRR</td>
+                <td><button onclick="Sellfuc()">Sell Ticket</button></td>
+            </tr>
+            <tr>
+                <td>PVR_03</td>
+                <td>March 29, 2024</td>
+                <td>Dune2</td>
+                <td><button onclick="Sellfuc()">Sell Ticket</button></td>
+            </tr>
+            <tr>
+                <td>PVR_04</td>
+                <td>March 29, 2024</td>
+                <td>Salaar</td>
+                <td><button onclick="Sellfuc()">Sell Ticket</button></td>
+            </tr>
+            <tr>
+                <td>PVR_05</td>
+                <td>March 30, 2024</td>
+                <td>RRR</td>
+                <td><button onclick="Sellfuc()">Sell Ticket</button></td>
+            </tr>
+            <tr>
+                <td>PVR_06</td>
+                <td>March 29, 2024</td>
+                <td>Dune2</td>
+                <td><button onclick="Sellfuc()">Sell Ticket</button></td>
+            </tr>
+            <tr>
+                <td>PVR_07</td>
+                <td>March 28, 2024</td>
+                <td>Salaar</td>
+                <td><button onclick="Sellfuc()">Sell Ticket</button></td>
+            </tr>
+            <tr>
+                <td>PVR_08</td>
+                <td>March 30, 2024</td>
+                <td>RRR</td>
+                <td><button onclick="Sellfuc()">Sell Ticket</button></td>
+            </tr>
+            <tr>
+                <td>PVR_09</td>
+                <td>March 28, 2024</td>
+                <td>Dune2</td>
+                <td><button onclick="Sellfuc()">Sell Ticket</button></td>
+            </tr>
+            <tr>
+                <td>PVR_10</td>
+                <td>March 28, 2024</td>
+                <td>Salaar</td>
+                <td><button onclick="Sellfuc()">Sell Ticket</button></td>
+            </tr>
+        </tbody>
+    </table>
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p style="color: black;">Are you sure you want to sell your ticket?</p>
+            <!-- <input type="text" name="ticketid" placeholder=""> -->
+            <pre style="color: grey;">
+                Ticket Price: ₹650
+                CGST        : ₹20              
+                SGST        : ₹25                
+            <span><b>    Total Price :</b> ₹695  /-</span>
+            </pre>
+            <input type="checkbox" id="confirmationCheckbox">
+            <label for="confirmationCheckbox" style="color: black;">Yes, I confirm to Sell</label>
+            <button onclick="confirmSell()">Confirm</button>
+        </div>
+    </div>
+
+
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+}
+
+h2 {
+    text-align: center;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+th {
+    background-color: #3e6af0;
+}
+
+button {
+    padding: 6px 12px;
+    border: none;
+    background-color: #007bff;
+    color: #ffffff;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+/* CSS for modal */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+/* Modal content */
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+
+/* Close button */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+    </style>
+
+<script>
+    function Sellfuc() {
+        var modal = document.getElementById("myModal");
+        modal.style.display = "block";
+    }
+
+    function confirmSell() {
+        var checkbox = document.getElementById("confirmationCheckbox");
+        if (checkbox.checked) {
+            alert("Ticket sold successfully!");
+            // Add code to proceed with selling the ticket
+        } else {
+            alert("Please confirm by checking the checkbox.");
+        }
+    }
+
+    // Close the modal if the user clicks outside of it
+    window.onclick = function(event) {
+        var modal = document.getElementById("myModal");
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+</script>
+</body>
+
+</html>
