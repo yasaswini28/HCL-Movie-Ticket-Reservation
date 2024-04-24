@@ -74,32 +74,19 @@
         event.preventDefault();
         var name = document.getElementById('name').value;
         var phone = document.getElementById('phone').value;
-
-        // Here, you can perform validation or further processing, such as sending the data to a server
-
         alert('Welcome back, ' + name + '!');
-        // Further logic can be added here such as redirecting to another page or performing other actions.
     });
-
-    // Add an input event listener to dynamically limit the input length and allow only numeric characters
     document.getElementById('phone').addEventListener('input', function(event) {
         const input = event.target;
         const value = input.value;
-        // Remove any non-numeric characters from the input
         const numericValue = value.replace(/\D/g, '');
-        // Limit the length to 10 digits
         const truncatedValue = numericValue.slice(0, 10);
-        // Update the input value
         input.value = truncatedValue;
     });
-
-    // Add a keydown event listener to prevent the input of non-numeric characters
     document.getElementById('phone').addEventListener('keydown', function(event) {
-        // Allow backspace, delete, arrow keys, and tab
         if (event.key === 'Backspace' || event.key === 'Delete' || event.key === 'ArrowLeft' || event.key === 'ArrowRight' || event.key === 'Tab') {
             return;
         }
-        // Allow only numeric characters
         if (!/\d/.test(event.key)) {
             event.preventDefault();
         }
