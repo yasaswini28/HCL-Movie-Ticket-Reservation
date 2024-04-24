@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ticket History</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .ticket {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        .delete-btn {
+            background-color: #ff3333;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+        .delete-btn:hover {
+            background-color: #cc0000;
+        }
+    </style>
+</head>
+<body>
+    <div id="ticketHistory">
+        <div class="ticket">
+            <h3>Ticket #PVR 01</h3>
+            <p>Description: This is ticket number one.</p>
+            <button class="delete-btn" onclick="deleteTicket(this)">Delete</button>
+        </div>
+        <div class="ticket">
+            <h3>Ticket #PVR 04</h3>
+            <p>Description: This is ticket number two.</p>
+            <button class="delete-btn" onclick="deleteTicket(this)">Delete</button>
+        </div>
+        <div class="ticket">
+            <h3>Ticket #PVR 05</h3>
+            <p>Description: This is ticket number three.</p>
+            <button class="delete-btn" onclick="deleteTicket(this)">Delete</button>
+        </div>
+    </div>
+
+    <script>
+        function deleteTicket(btn) {
+            // Remove the parent element (ticket) when delete button is clicked
+            btn.parentNode.remove();
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Ticket Booking System</title>
+    <link rel="stylesheet" href="style.css">
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <style>
+        .text-wrapper {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        #login-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            background-color: rgba(64, 0, 255, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        #login-form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #login-form .form-group {
+            margin-bottom: 10px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 8px;
+            border-radius: 5px;
+            border: 1px solid #000dff;
+            box-sizing: border-box;
+        }
+
+        #video-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        #video-background {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        #buy-button,
+        #sell-button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #6ac6db;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+            display: block; /* Display buy and sell buttons */
+            margin: auto; /* Center the buttons */
+        }
+
+        /* Highlight selected seats */
+        .seat.selected {
+            background-color: #6ac6db;
+        }
+
+        /* Highlight selected movie */
+        .movie-option.selected {
+            border: 2px solid #6ac6db;
+        }
+
+        /* Button styling */
+        #previous-bookings-button,
+        #sign-out-button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #6ac6db;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+        }
+
+        #previous-bookings-button {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+        }
+
+        #sign-out-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="video-container">
+        <!-- Background image for login page -->
+        <img src=movie.jpg alt="background" id="video-background">
+    </div>
+
+    <div id="login-container">
+        <h2>Login to book Tickets</h2>
+        <form id="login-form">
+            <div class="form-group">
+                <label for="username">Mobile Number:</label>
+                <input type="number" id="username" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <button type="submit">Login</button>
+        </form>
+    </div>
+
+    <div id="booking-container" style="display: none;">
+        <div class="user-info">
+            <button id="previous-bookings-button">Previous Bookings</button>
+            <span id="username-display"></span>
+            <button id="sign-out-button">Sign Out</button>
+        </div>
+        <div class="movie-container">
+            <label>Pick a movie:</label>
+            <div id="movie">
+                <button class="movie-option" value="650" id="button">
+                    <span class="text">Salaar (₹650)</span>
+                    <a href="https://www.youtube.com/watch?v=JlG4TOVZEHI" target="_blank">
+                        <ion-icon name="image-outline" id="icon_1"></ion-icon>
+                    </a>
+                </button>
+                <button class="movie-option" value="850" id="button">
+                    <span class="text">RRR (₹850)</span>
+                    <a href="https://www.youtube.com/watch?v=NgBoMJy386M" target="_blank">
+                        <ion-icon name="image-outline" id="icon_1"></ion-icon>
+                    </a>
+                </button>
+                <button class="movie-option" value="550" id="button">
+                    <span class="text">Jumanji: Next Level (₹550)</span>
+                    <a href="https://www.youtube.com/watch?v=2QKg5SZ_35I" target="_blank">
+                        <ion-icon name="image-outline" id="icon_1"></ion-icon>
+                    </a>
+                </button>
+                <button class="movie-option" value="750" id="button">
+                    <span class="text">Dune 2 (₹750)</span>
+                    <a href="https://www.youtube.com/watch?v=U2Qp5pL3ovA" target="_blank">
+                        <ion-icon name="image-outline" id="icon_1"></ion-icon>
+                    </a>
+                </button>
+            </div>
+        </div>
+
+        <ul class="showcase">
+            <li>
+                <div class="seat"></div>
+                <small>N/A</small>
+            </li>
+            <li>
+                <div class="seat selected"></div>
+                <small>Selected</small>
+            </li>
+            <li>
+                <div class="seat occupied"></div>
+                <small>Occupied</small>
+            </li>
+        </ul>
+
+        <div class="container">
+            <div class="movie-screen">
+                <img src='screen-thumb.png' alt='screen' />
+            </div>
+
+            <div class="row-container">
+                <div class="row">
+                    <div class="seat"></div>
+                    <div class="seat"></div>
+                    <div class="seat"></div>
+                    <div class="seat"></div>
+                    <div class="seat"></div>
+                    <div class="seat"></div>
+                    <div class="seat"></div>
+                    <div class="seat"></div>
+                </div>
+                <div class="row">
+                    <div class="seat"></div>
+                    <div class="seat"></div>
+                    <div class="seat"></div>
+                    <div class="seat occupied"></div>
+                    <div class="seat occupied"></div>
+                    <div class="seat"></div>
+                    <div class="seat"></div>
+                    <div class="seat"></div>
+                </div>
+                <!-- Add more rows and seats here -->
+                <div class="row">
+                    <div class="seat"></div>
+                    <div class="seat"></div>
+                    <div class="seat"></div>
+                    <div class="seat"></div>
+                    <div class="seat"></div>
+                    <div class="seat"></div>
+                    <div class="seat"></div>
+                    <div class="seat"></div>
+                </div>
+                <div class="row">
+                    <div class="seat"></div>
+                    <div class="seat"></div>
+                    <div class="seat"></div>
+                    <div class="seat occupied"></div>
+                    <div class="seat occupied"></div>
+                    <div class="seat"></div>
+                    <div class="seat"></div>
+                    <div class="seat"></div>
+                </div>
+                <div class="row">
+                    <div class="seat"></div>
+                    <div class="seat"></div>
+                    <div class="seat"></div>
+                    <div class="seat occupied"></div>
+                    <div class="seat occupied"></div>
+                    <div class="seat"></div>
+                    <div class="seat"></div>
+                    <div class="seat"></div>
+                </div>
+                <div class="row">
+                    <div class="seat"></div>
+                    <div class="seat"></div>
+                    <div class="seat"></div>
+                    <div class="seat occupied"></div>
+                    <div class="seat occupied"></div>
+                    <div class="seat"></div>
+                    <div class="seat"></div>
+                    <div class="seat"></div>
+                </div>
+                <div class="row">
+                    <div class="seat"></div>
+                    <div class="seat"></div>
+                    <div class="seat"></div>
+                    <div class="seat occupied"></div>
+                    <div class="seat occupied"></div>
+                    <div class="seat"></div>
+                    <div class="seat"></div>
+                    <div class="seat"></div>
+                </div>
+            </div>
+        </div>
+
+        <button id="buy-button">
+            <a href="ticket_themes.html" style="text-decoration: none; color: white;">
+                Buy Ticket
+            </a>
+            
+        </button>
+        <button id="sell-button">
+            <a href="waiting_list.html" style="text-decoration: none; color: white;">
+                Sell Ticket
+            </a>
+           </button>
+    </div>
+
+    <script>
+        // Function to handle login form submission
+        document.getElementById('login-form').addEventListener('submit', function (event) {
+            event.preventDefault(); // Prevent default form submission
+            // For simplicity, let's assume username and password are correct
+            // In a real scenario, you'd perform authentication (e.g., AJAX request to server)
+            // Once authenticated, show the booking container and hide the login container
+            document.getElementById('login-container').style.display = 'none';
+            document.getElementById('booking-container').style.display = 'block';
+            // Hide the background video
+            document.getElementById('video-container').style.display = 'none';
+            // Display username in the user info section
+            var username = document.getElementById('username').value;
+            document.getElementById('username-display').textContent = "Welcome, " + username;
+        });
+
+        // Functionality for sign-out button
+        document.getElementById('sign-out-button').addEventListener('click', function () {
+            document.getElementById('login-container').style.display = 'block';
+            document.getElementById('booking-container').style.display = 'none';
+            document.getElementById('username-display').textContent = ""; // Clear username
+            // Clear any other user-related data if needed
+        });
+
+        // Functionality for buy button
+        document.getElementById('buy-button').addEventListener('click', function () {
+            Buyalert();
+        });
+
+        // Functionality for sell button
+        document.getElementById('sell-button').addEventListener('click', function () {
+            Selltic();
+        });
+
+        function Buyalert() {
+            alert("Confirm to Purchase Ticket")
+        }
+
+        function Selltic() {
+            alert("Confirm to Sell Ticket")
+        }
+
+        // Function to handle seat selection
+        document.querySelectorAll('.seat').forEach(seat => {
+            seat.addEventListener('click', function () {
+                if (!seat.classList.contains('occupied')) {
+                    seat.classList.toggle('selected');
+                    updateSelectedSeats();
+                }
+            });
+        });
+
+        // Function to update selected seats count and total price
+        function updateSelectedSeats() {
+            var selectedSeats = document.querySelectorAll('.seat.selected').length;
+            document.getElementById('count').textContent = selectedSeats;
+            document.getElementById('total').textContent = selectedSeats * 100; // Assuming ticket price is ₹100
+        }
+
+        // Functionality for movie selection highlighting
+        document.querySelectorAll('.movie-option').forEach(movieOption => {
+            movieOption.addEventListener('click', function () {
+                // Remove selected class from all movie options
+                document.querySelectorAll('.movie-option').forEach(option => {
+                    option.classList.remove('selected');
+                });
+                // Add selected class to the clicked movie option
+                movieOption.classList.add('selected');
+            });
+        });
+
+        // Functionality for previous bookings button
+        document.getElementById('previous-bookings-button').addEventListener('click', function () {
+            window.open('previous_bookings.html', '_blank');
+        });
+    </script>
+</body>
+
+</html>
